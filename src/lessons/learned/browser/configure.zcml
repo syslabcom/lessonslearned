@@ -17,20 +17,4 @@
       directory="static"
       />
 
-  <browser:page
-    name="query-db"
-    for="*"
-    class=".views.QueryDbView"
-    template="templates/query_db.pt"
-    permission="zope2.View"
-    />
-
-  <browser:page
-    name="update-db"
-    for="*"
-    class=".views.UpdateDbView"
-    template="templates/update_db.pt"
-    permission="zope2.View"
-    />
-
 </configure>
