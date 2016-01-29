@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="ploneconf.site">
+
+<body>
+    <metal:content-core fill-slot="content-core">
+        <h2>Query the lessons learned db</h2>
+        <br/>
+        <form method="post">
+            <fieldset>
+            <legend>Customer</legend>
+                <select name="customer">
+                    <span tal:repeat="customer view/customers"><option tal:attributes="value customer" tal:content="customer">A Customer</option></span>
+                </select>
+            </fieldset>
+            <br/>
+            <fieldset>
+                <legend>Keywords</legend>
+                <div tal:repeat="keyword view/keywords">
+                    <input type="checkbox" name="keywords" tal:attributes="value keyword" tal:content="keyword">A keyword</input>
+                    <br/>
+                </div>
+            </fieldset>
+            <br/>
+            <input type="submit"/>
+        </form>
+        <br/>
+        <div tal:condition="view/is_post">
+            <h2>Results</h2>
+            <br/>
+            <div tal:condition="view/results" tal:repeat="result view/results">
+                <h4 tal:content="result/title"/>
+                <p>Keywords: <tal:block content="python: view.keywords_as_string(result)"/></p>
+                <p>Customer: <tal:block content="result/customer"/></p>
+                <p tal:content="result/text"/>
+                <br/>
+            </div>
+            <p tal:condition="python: not view.results()">
+                There are no entries matching your criteria.
+            </p>
+        </div>
+        
+    </metal:content-core>
+</body>
+</html>
