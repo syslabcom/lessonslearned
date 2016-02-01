@@ -4,17 +4,12 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="lessons.learned">
 
-  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
-  <include package="z3c.jbot" file="meta.zcml" />
-  <browser:jbot
-      directory="overrides"
-      layer="lessons.learned.interfaces.ILessonsLearnedLayer"
-      />
-
-  <!-- Publish static files -->
-  <browser:resourceDirectory
-      name="lessons.learned"
-      directory="static"
-      />
+  <browser:page
+      name="llsearch-view"
+      for="*"
+      template="templates/llsearch.pt"
+      class=".views.LLSearchView"
+      permission="zope2.View"
+  />
 
 </configure>

@@ -1,0 +1,10 @@
+<model xmlns:lingua="http://namespaces.plone.org/supermodel/lingua" xmlns:users="http://namespaces.plone.org/supermodel/users" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns="http://namespaces.plone.org/supermodel/schema">
+  <schema>
+    <field name="customer" type="zope.schema.TextLine"
+           form:widget="plone.app.z3cform.widget.AjaxSelectFieldWidget">
+      <description/>
+      <required>False</required>
+      <title>Customer</title>
+    </field>
+  </schema>
+</model>
