@@ -23,10 +23,10 @@
   <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
   <element value="plone.app.content.interfaces.INameFromTitle"/>
  </property>
- <property name="schema"></property>
+ <property name="schema">lessons.learned.content.llentry.ILLEntry</property>
  <property
     name="model_source"></property>
- <property name="model_file">lessons.learned.content:llentry.xml</property>
+ <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
  <alias from="edit" to="@@edit"/>

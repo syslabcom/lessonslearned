@@ -46,4 +46,9 @@
       factory=".setuphandlers.HiddenProfiles"
       name="lessons.learned-hiddenprofiles" />
 
+  <utility
+      component=".vocabularies.CustomerVocabularyFactory"
+      name="lessons.learned.vocabularies.Customer"
+      />
+
 </configure>
