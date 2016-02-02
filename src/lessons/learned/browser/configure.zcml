@@ -5,10 +5,18 @@
     i18n_domain="lessons.learned">
 
   <browser:page
-      name="llsearch-view"
+      name="llsearch"
       for="*"
       template="templates/llsearch.pt"
       class=".views.LLSearchView"
+      permission="zope2.View"
+  />
+
+  <browser:page
+      name="llfulltextsearch"
+      for="*"
+      template="templates/llfulltextsearch.pt"
+      class=".views.LLFulltextSearchView"
       permission="zope2.View"
   />
 
