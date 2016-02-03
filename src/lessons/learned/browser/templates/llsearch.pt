@@ -66,7 +66,7 @@
                     <div>
                       <tal:items repeat="item customers_list">
                         <div>
-                          <input type="radio" name="customer:list" value="#" checked="checked"
+                          <input type="radio" name="customer" value="#" checked="checked"
                                  tal:attributes="value item;
                                                  id string:customer_${repeat/item/number};"/>
 
@@ -84,7 +84,7 @@
                   <div class="field"
                        tal:define="portal_types portal/portal_types;
                                    subjects_list view/subjects_list;
-                                   all_checked python:(len(subjects_list) == len(request.get('subjects', []))) or first_call;
+                                   all_checked python:(len(subjects_list) == len(request.get('Subject', []))) or first_call;
                                    toggle_select_state python:all_checked and 'true' or 'false';">
                     <div class="optionsToggle">
                       <input type="checkbox" onchange="" name="pt_toggle" value="#" id="pt_toggle" class="noborder" checked="checked"
@@ -99,7 +99,7 @@
                                tal:repeat="sublist subjectsLists">
                         <tal:items repeat="item sublist">
                           <div>
-                            <input type="checkbox" name="subjects:list" value="#" class="noborder" checked="checked"
+                            <input type="checkbox" name="Subject:list" value="#" class="noborder" checked="checked"
                                    tal:attributes="value item;
                                                    id string:subject_${repeat/sublist/number}_${repeat/item/number};
                                                    checked python:((item in request.get('subject', [])) or first_call) and 'checked' or ''"/>
@@ -176,6 +176,7 @@
 
         <div>
           <div>
+            <br/>
             <h1 class="documentFirstHeading"
                 i18n:translate=""
                 tal:condition="not:st">
@@ -301,6 +302,9 @@
                                       August 16, 2001 at 23:35:59
                                     </span>
                                   </span>
+                                </span>
+                                <span>
+                                    Customer: <span tal:content="item/customer"/>
                                 </span>
                                 <span tal:define="categories item/Subject|nothing"
                                       tal:condition="categories">

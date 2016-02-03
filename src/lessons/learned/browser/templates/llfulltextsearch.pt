@@ -74,6 +74,7 @@
 
         <div>
           <div>
+            <br/>
             <h1 class="documentFirstHeading"
                 i18n:translate=""
                 tal:condition="not:st">
@@ -199,6 +200,9 @@
                                       August 16, 2001 at 23:35:59
                                     </span>
                                   </span>
+                                </span>
+                                <span>
+                                    Customer: <span tal:content="item/customer"/>
                                 </span>
                                 <span tal:define="categories item/Subject|nothing"
                                       tal:condition="categories">
