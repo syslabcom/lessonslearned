@@ -34,6 +34,7 @@ class CustomerVocabulary(object):
             for i in index._index
             if query is None or safe_encode(query) in safe_encode(i)
         ]
+
         return SimpleVocabulary(items)
 
 CustomerVocabularyFactory = CustomerVocabulary()
