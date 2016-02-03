@@ -9,11 +9,9 @@ class ILLEntry(model.Schema):
     """ Dexterity Schema for entries to the LL database
     """
 
-    customer = schema.Tuple(
+    customer = schema.TextLine(
         title=(u'Customer'),
-        value_type=schema.TextLine(),
-        missing_value=(),
-        required=False
+        required=True
     )
 
     directives.widget(
