@@ -4,14 +4,14 @@ from Products.ZCTextIndex.ParseTree import ParseError
 from plone.app.contentlisting.interfaces import IContentListing
 from Products.CMFPlone.PloneBatch import Batch
 from zope.site.hooks import getSite
-from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 from Products.AdvancedQuery import Eq, Or, And
 
+
 class LLFulltextSearchView(Search):
     def results(self, query=None, batch=True, b_size=10, b_start=0,
-            use_content_listing=True):
+                use_content_listing=True):
         """ Get properly wrapped search results from the catalog.
         Everything in Plone that performs searches should go through this view.
         'query' should be a dictionary of catalog parameters.
@@ -20,7 +20,7 @@ class LLFulltextSearchView(Search):
         if query is None:
             query = {}
         query['portal_type'] = 'llentry'
-        if self.request.form.get('customer','') == 'All':
+        if self.request.form.get('customer', '') == 'All':
             del self.request.form['customer']
         results = super(LLFulltextSearchView, self).results(
             query, batch, b_size, b_start, use_content_listing)
@@ -39,9 +39,14 @@ class LLSearchView(Search):
         return [subject for subject in index._index]
 
     def customers_list(self):
-        factory = getUtility(IVocabularyFactory, 'lessons.learned.vocabularies.Customer')
+        factory = getUtility(IVocabularyFactory,
+                             'lessons.learned.vocabularies.Customer')
         vocabulary = factory(self.context)
-        return ['No matches by customer'] + [term.value for term in vocabulary] + ['All']
+        return (
+            ['No matches by customer'] +
+            [term.value for term in vocabulary] +
+            ['All']
+        )
 
     def results(self, query=None, batch=True, b_size=10, b_start=0,
                 use_content_listing=True):
@@ -85,10 +90,11 @@ class LLSearchView(Search):
             if key in search_keys:
                 if key == 'customer' and query['customer'] == 'All':
                     for customer in self.customers_list():
-                        if customer in  ('All', 'No matches by customer'):
+                        if customer in ('All', 'No matches by customer'):
                             continue
-                        search_indexes.append(Eq('customer',customer))
-                elif key == 'customer' and query['customer'] == 'No matches by customer':
+                        search_indexes.append(Eq('customer', customer))
+                elif (key == 'customer' and
+                      query['customer'] == 'No matches by customer'):
                     pass
                 else:
                     self.add_to_index_list(search_indexes, query, key)
